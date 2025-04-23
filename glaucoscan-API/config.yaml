@@ -1,0 +1,134 @@
+# Glaucoma Detection API Configuration
+# This file contains all configuration settings for the application
+# You can override these settings using environment variables with the pattern:
+# GLAUCOMA_SECTION_KEY (e.g., GLAUCOMA_SERVER_PORT=8080)
+
+# Environment settings
+environment:
+  mode: "development"  # Options: development, testing, production
+  debug: true  # Set to false in production
+  env_prefix: "GLAUCOMA_"  # Prefix for environment variables that override config
+
+# Server settings
+server:
+  host: "0.0.0.0"
+  port: 8236
+  reload: true  # Set to false in production
+  workers: 4
+  timeout: 60  # Request timeout in seconds
+  graceful_shutdown_timeout: 10  # Seconds to wait for graceful shutdown
+
+# Application settings
+app:
+  name: "Glaucoma Detection API"
+  version: "1.0.0"
+  description: "API for detecting glaucoma from retinal images using deep learning"
+  docs_url: "/docs"  # URL for Swagger UI docs
+  redoc_url: "/redoc"  # URL for ReDoc docs
+  openapi_url: "/openapi.json"  # URL for OpenAPI schema
+
+# Model settings
+model:
+  img_size: [224, 224]
+  models_dir: "models"
+  mlp_model_path: "models/glaucoma_mlp_model.pkl"
+  class_mapping_path: "models/class_mapping.pkl"
+  scaler_path: "models/scaler.joblib"
+  feature_selector_path: "models/feature_selector.joblib"
+  confidence_threshold: 0.7  # Minimum confidence for positive prediction
+  batch_size: 16  # Batch size for prediction
+  feature_extraction:
+    backbone: "resnet50"  # Options: resnet50, vgg16, efficientnet
+    pooling: "avg"  # Options: avg, max, flatten
+    include_top: false  # Whether to include top layers
+    weights: "imagenet"  # Pre-trained weights
+
+# Training settings
+training:
+  train_ratio: 0.8
+  random_state: 42
+  use_grid_search: true
+  use_smote: true
+  use_feature_selection: true
+  mlp_params:
+    hidden_layer_sizes: [100, 100, 100]
+    activation: "relu"
+    solver: "adam"
+    max_iter: 200
+    early_stopping: true
+    n_iter_no_change: 10
+  feature_selection:
+    method: "random_forest"  # Options: random_forest, select_k_best, rfe
+    n_features: 500  # Number of features to select
+
+# Data settings
+data:
+  base_image_dir: "images"
+  featurized_data_path: "featurized_data.csv"
+  train_data_path: "train_featurized.csv"
+  test_data_path: "test_featurized.csv"
+  augmentation:
+    enabled: true
+    factor: 5  # Number of augmented images per original
+    rotation_range: 20
+    width_shift_range: 0.2
+    height_shift_range: 0.2
+    shear_range: 0.2
+    zoom_range: 0.2
+    horizontal_flip: true
+    vertical_flip: false
+    fill_mode: "nearest"
+
+# Upload settings
+upload:
+  directory: "uploaded"
+  glaucoma_subfolder: "glaucoma"
+  noglaucoma_subfolder: "noglaucoma"
+  allowed_extensions: [".jpg", ".jpeg", ".png"]
+  max_file_size_mb: 10
+  organize_by_prediction: true  # Whether to move uploaded files based on prediction
+  thumbnail_size: [150, 150]  # Size for thumbnails
+  preserve_original: true  # Keep original files
+
+# Logging settings
+logging:
+  level: "INFO"  # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"
+  file_path: "logs/glaucoma_api.log"
+  rotation: "10 MB"  # Rotate file when it reaches 10 MB
+  retention: "1 month"  # Keep logs for 1 month
+  compression: "zip"  # Compress rotated logs
+  console: true  # Whether to log to console
+  diagnose: false  # Enhanced debugging information
+  backtrace: true  # Show traceback for errors
+  serialize: false  # JSON serialization for structured logging
+  enqueue: true  # Thread-safe logging
+  error_log_path: "logs/error.log"  # Separate file for error logs
+  access_log: true  # Whether to log API requests
+
+# Security settings
+security:
+  enable_cors: true
+  allow_origins: ["*"]  # Restrict to specific origins in production
+  allow_credentials: true
+  allow_methods: ["*"]
+  allow_headers: ["*"]
+  enable_rate_limiting: false  # Set to true to enable rate limiting
+  rate_limit: 100  # Number of requests allowed per window
+  rate_limit_window: 3600  # Window period in seconds (1 hour)
+  enable_api_key: false  # Set to true to enable API key authentication
+  api_keys: []  # List of valid API keys
+
+# Cache settings
+cache:
+  enabled: true
+  type: "memory"  # Options: memory, redis, file
+  ttl: 3600  # Time to live in seconds
+  max_size: 100  # Maximum number of items in cache
+
+# Monitoring settings
+monitoring:
+  enabled: false
+  endpoint: "/metrics"
+  collect_default_metrics: true
+  push_gateway: ""  # URL for Prometheus push gateway (optional)
