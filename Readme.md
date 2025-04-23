@@ -1,4 +1,4 @@
-# 🧠 Glaucoma Detection System
+#  Glaucoma Detection System
 
 A full-stack AI solution for detecting glaucoma from retinal fundus images, combining a powerful **FastAPI backend** with a user-friendly **Next.js frontend**.
 
@@ -111,7 +111,6 @@ cd glaucoscan-UI  && ./run-docker.sh
 
 For questions or support, reach out at:
 
-- **Email**: support@glaucomadetection.com  
 - **GitHub Issues**: https://github.com/KrishNachnani/Glaucoma/issues
 
 ---

@@ -1,0 +1,23 @@
+# Ignore frontend dependencies
+glaucoscan-UI/node_modules/
+glaucoscan-UI/.next/
+glaucoscan-UI/out/
+glaucoscan-UI/.env
+glaucoscan-UI/.env.local
+glaucoscan-UI/.env.*.local
+
+# Ignore backend virtual envs and Python cache
+glaucoscan-API/venv/
+glaucoscan-API/__pycache__/
+glaucoscan-API/*.pyc
+glaucoscan-API/*.pkl
+glaucoscan-API/logs/
+glaucoscan-API/.env
+
+# General ignore patterns
+.DS_Store
+*.log
+*.swp
+*.swo
+.vscode/
+.idea/
