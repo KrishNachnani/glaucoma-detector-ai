@@ -2,8 +2,7 @@ import { NextResponse } from 'next/server';
 import { MailerSend, EmailParams, Sender, Recipient } from 'mailersend';
 
 // Environment variables (server-side only)
-//const MAILERSEND_API_KEY = process.env.MAILERSEND_API_KEY || '';
-const MAILERSEND_API_KEY = 'mlsn.f246cd6923b2043f9ae4730ca7c15f70e1fbd3017d8d8c5fb5f4cacafcb8c870';
+const MAILERSEND_API_KEY = process.env.MAILERSEND_API_KEY || '';
 const EMAIL_FROM = process.env.EMAIL_FROM || '';
 const EMAIL_TO = process.env.EMAIL_TO || '';
 
