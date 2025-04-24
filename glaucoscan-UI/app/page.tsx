@@ -30,32 +30,27 @@ export default function Home() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Show image preview
     const reader = new FileReader();
     reader.onload = (e) => {
       setSelectedImage(e.target?.result as string);
     };
     reader.readAsDataURL(file);
 
-    // Upload to API
     setIsAnalyzing(true);
     const formData = new FormData();
     formData.append('file', file);
 
     try {
-      // Use environment variable for API URL
-      //const apiUrl = process.env.NEXT_PUBLIC_GLAUCOMA_API_URL; 
-      const apiUrl="http://localhost:8999";
-      console.log('API URL:', apiUrl);
+      const apiUrl = "http://localhost:8999";
       const response = await fetch(`${apiUrl}/upload`, {
         method: 'POST',
         body: formData,
       });
-      
+
       if (!response.ok) {
         throw new Error(`Server responded with status: ${response.status}`);
       }
-      
+
       const data = await response.json();
       setResult(data);
     } catch (error) {
@@ -66,18 +61,29 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#0a192f] to-[#112240]">
-      <div className="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-12 items-center">
-        <div className="space-y-6">
-          <h1 className="text-5xl font-bold text-white leading-tight">
-            Glaucoma Detection
-            <span className="block text-blue-400">Using AI Technology</span>
-          </h1>
-          <p className="text-gray-300 text-lg">
-            Upload your retinal image for instant AI-powered glaucoma detection. Our advanced
-            system provides quick and accurate analysis to support early diagnosis.
-          </p>
-          
+    <main className="min-h-screen bg-gradient-to-b from-[#0a192f] to-[#112240] py-12 px-4">
+      {/* Hero Section */}
+      <div className="text-center max-w-4xl mx-auto mb-12">
+        <h1 className="text-5xl font-bold text-white leading-tight">
+          Accessible AI for Early Glaucoma Detection
+        </h1>
+        <p className="text-blue-300 text-xl mt-4">
+          Helping clinicians and communities screen for glaucoma anywhere — using only a smartphone and a lens.
+        </p>
+      </div>
+
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+        {/* Left Column */}
+        <div className="space-y-8 max-w-2xl w-full mx-auto px-4 sm:px-6 lg:px-0">
+          <div className="bg-[#1a2942]/60 border border-blue-400 p-6 rounded-lg text-white">
+            <h2 className="text-xl font-semibold mb-2">How It Works:</h2>
+            <ol className="list-decimal list-inside space-y-1 text-gray-200 text-sm leading-relaxed">
+              <li>Capture a fundus photo using a smartphone and a 20- or 28-diopter lens.</li>
+              <li>Upload your image below.</li>
+              <li>Receive an instant AI-powered assessment.</li>
+            </ol>
+          </div>
+
           <div className="relative">
             <input
               type="file"
@@ -88,7 +94,7 @@ export default function Home() {
             />
             <label
               htmlFor="image-upload"
-              className="flex items-center justify-center w-full h-64 border-2 border-dashed border-blue-400 rounded-xl cursor-pointer hover:border-blue-500 transition-all bg-[#1a2942]/50"
+              className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-blue-400 text-blue-400 rounded-xl cursor-pointer hover:border-blue-500 transition-all bg-[#1a2942]/50"
             >
               {selectedImage ? (
                 <div className={`relative w-full h-full ${result?.prediction === 'Glaucoma' ? 'ring-4 ring-red-500' : result ? 'ring-4 ring-green-500' : ''}`}>
@@ -108,38 +114,37 @@ export default function Home() {
             </label>
           </div>
         </div>
-        
-        {/* Show the glaucoma image when no image is selected, otherwise show analysis results */}
+
+        {/* Right Column */}
         {!selectedImage ? (
-          <div className="bg-[#1a2942] p-8 rounded-2xl space-y-6">
+          <div className="self-center bg-[#1a2942] p-8 rounded-2xl space-y-6 max-w-md w-full mx-auto">
             <h2 className="text-2xl font-bold text-white">Glaucoma Information</h2>
             <div className="relative w-full h-64">
-              <Image 
+              <Image
                 src="/images/glaucoma.jpg"
                 alt="Glaucoma Illustration"
                 fill
                 className="object-contain rounded-xl"
               />
             </div>
-            <p className="text-gray-300">
-              Glaucoma is a group of eye conditions that damage the optic nerve, often caused by abnormally high pressure in the eye. 
-              Early detection is crucial to prevent vision loss.
+            <p className="text-gray-300 text-sm">
+              Glaucoma is a group of eye conditions that damage the optic nerve, often caused by abnormally high pressure in the eye. Early detection is crucial to prevent vision loss.
             </p>
           </div>
         ) : (
-          <div className="bg-[#1a2942] p-8 rounded-2xl space-y-6">
+          <div className="bg-[#1a2942] p-8 rounded-2xl space-y-6 max-w-md w-full mx-auto">
             <h2 className="text-2xl font-bold text-white">Analysis Results</h2>
-            
+
             {isAnalyzing ? (
-              <div className="flex-2 h-full w-full"> 
-                <br></br><br></br><br></br><br></br>
+              <div className="flex-2 h-full w-full">
+                <br /><br /><br /><br />
                 <NeuralNetworkVisualization />
               </div>
             ) : result ? (
               <div className="space-y-4">
                 <div className={`p-4 rounded-lg ${
-                  result.prediction === 'Glaucoma' 
-                    ? 'bg-red-500/20 border border-red-500' 
+                  result.prediction === 'Glaucoma'
+                    ? 'bg-red-500/20 border border-red-500'
                     : 'bg-green-500/20 border border-green-500'
                 }`}>
                   <div className="flex items-center gap-2">
@@ -149,37 +154,34 @@ export default function Home() {
                     </span>
                   </div>
                   <p className="text-gray-300 mt-2">
-                    Confidence: {result.prediction === 'Glaucoma' 
-                      ? Math.round(result.probability["Glaucoma"] * 100) 
+                    Confidence: {result.prediction === 'Glaucoma'
+                      ? Math.round(result.probability["Glaucoma"] * 100)
                       : Math.round(result.probability["No Glaucoma"] * 100)}%
                   </p>
                 </div>
-                
-                <br></br>
+
                 {result.visualization_image && (
                   <div>
                     <h3 className="text-xl font-semibold text-white mb-3">Visualization</h3>
                     <div className="relative h-48 w-full overflow-hidden rounded-lg">
-                      <Image 
+                      <Image
                         src={`data:image/png;base64,${result.visualization_image}`}
                         alt="Visualization of analysis"
                         fill
                         className="object-contain"
                       />
                     </div>
-                    <div className="space-y-4">
-                      <section className="bg-[#1a2942] p-8 rounded-xl">
-                        <h2 className="text-xl font-semibold text-white mb-4">Grad-CAM Visualizations</h2>
-                        <p className="text-gray-300">
-                          Grad-CAM (Gradient-weighted Class Activation Mapping) is a technique used to visualize which parts of an image are most important for a Convolutional Neural Network's (CNN's) decision in an a glaucoma classification task.
-                          Heatmaps highlights parts of the eye image that the model is focusing on when making a glaucoma classification. 
-                        </p>
-                        <br></br>
-                        <p className="text-gray-300">
-                          Three panels are <b>original image</b>, <b>Grad-CAM heatmap</b>, and a <b>superimposed</b> view.
-                        </p>
-                      </section>
-                    </div>
+                    <section className="bg-[#1a2942] p-8 rounded-xl mt-4">
+                      <h2 className="text-xl font-semibold text-white mb-4">Grad-CAM Visualizations</h2>
+                      <p className="text-gray-300 text-sm">
+                        Grad-CAM (Gradient-weighted Class Activation Mapping) is a technique used to visualize which parts of an image are most important for a CNN's decision in a glaucoma classification task.
+                        Heatmaps highlight the regions the model focuses on when detecting glaucoma.
+                      </p>
+                      <br />
+                      <p className="text-gray-300 text-sm">
+                        The three panels below represent the <b>original image</b>, the <b>Grad-CAM heatmap</b>, and a <b>superimposed view</b>.
+                      </p>
+                    </section>
                   </div>
                 )}
               </div>
@@ -193,6 +195,11 @@ export default function Home() {
             )}
           </div>
         )}
+      </div>
+
+      {/* Disclaimer */}
+      <div className="text-sm text-center text-gray-400 px-4 pt-12 max-w-3xl mx-auto">
+        Glaucoscan.ai is intended for educational and research demonstration purposes only. It is not a substitute for professional medical diagnosis or advice.
       </div>
     </main>
   );

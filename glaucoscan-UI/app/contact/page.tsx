@@ -3,11 +3,7 @@ import { useState } from 'react';
 import { Send } from 'lucide-react';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -17,19 +13,16 @@ export default function Contact() {
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setErrorMessage('');
-    
+
     try {
-      // Use the new API route instead of direct MailerSend implementation
       const response = await fetch('/api/send-email', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      
+
       const data = await response.json();
-      
+
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', message: '' });
@@ -49,13 +42,18 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0a192f] to-[#112240] py-12 px-4">
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-4xl font-bold text-white mb-8">Contact Us</h1>
-        
+
+        {/* Hero */}
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-bold text-white mb-2">Contact Us</h1>
+          <p className="text-blue-300 text-lg">We’d love to hear from you — whether it's feedback, collaboration, or questions.</p>
+        </div>
+
+        {/* Contact Form */}
         <form onSubmit={handleSubmit} className="space-y-6 bg-[#1a2942] p-8 rounded-xl">
+          {/* Name */}
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-200 mb-2">
-              Name
-            </label>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-200 mb-2">Name</label>
             <input
               type="text"
               id="name"
@@ -65,11 +63,10 @@ export default function Contact() {
               required
             />
           </div>
-          
+
+          {/* Email */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-200 mb-2">
-              Email
-            </label>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-200 mb-2">Email</label>
             <input
               type="email"
               id="email"
@@ -79,11 +76,10 @@ export default function Contact() {
               required
             />
           </div>
-          
+
+          {/* Message */}
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-200 mb-2">
-              Message
-            </label>
+            <label htmlFor="message" className="block text-sm font-medium text-gray-200 mb-2">Message</label>
             <textarea
               id="message"
               value={formData.message}
@@ -93,7 +89,8 @@ export default function Contact() {
               required
             />
           </div>
-          
+
+          {/* Button */}
           <button
             type="submit"
             disabled={isSubmitting}
@@ -108,7 +105,8 @@ export default function Contact() {
               </>
             )}
           </button>
-          
+
+          {/* Status Messages */}
           {submitStatus === 'success' && (
             <p className="text-green-400 text-center">Message sent successfully!</p>
           )}

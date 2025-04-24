@@ -173,8 +173,8 @@ Developed by the Medical Imaging AI Team. The feature extraction backbone (ResNe
 ## Contact Information
 
 For questions or support, please contact the project maintainers at:
-- Email: [ai-support@example.com](mailto:ai-support@example.com)
-- GitHub Issues: [https://github.com/organization/glaucoma-detection/issues](https://github.com/organization/glaucoma-detection/issues)
+- Email: [glaucoscan.ai@gmail.com](mailto:glaucoscan.ai@gmail.com)
+- GitHub Issues: [https://github.com/KrishNachnani/Glaucoma/issues](https://github.com/KrishNachnani/Glaucoma/issues)
 
 ---
 

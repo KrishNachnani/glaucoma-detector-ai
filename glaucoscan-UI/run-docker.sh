@@ -11,7 +11,7 @@ API_URL=${API_URL:-"http://localhost:8999"}
 # Default email settings if not specified as environment variables
 MAILERSEND_API_KEY=${MAILERSEND_API_KEY:-"mlsn.f246cd6923b2043f9ae4730ca7c15f70e1fbd3017d8d8c5fb5f4cacafcb8c870"}
 EMAIL_FROM=${EMAIL_FROM:-"noreply@test-zkq340eep5xgd796.mlsender.net"}
-EMAIL_TO=${EMAIL_TO:-"nachnanikrish@gmail.com"}
+EMAIL_TO=${EMAIL_TO:-"ajviradia@gmail.com"}
 
 # Stop and remove existing container if it exists
 docker stop $CONTAINER_NAME 2>/dev/null
