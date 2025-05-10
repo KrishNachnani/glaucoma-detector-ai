@@ -1,5 +1,3 @@
-#  Glaucoma Detection System
-
 # GlaucoScan.ai
 
 **Open-source full stack AI tool for early glaucoma detection from fundus images, optimized for mobile and low-resource clinics.**
@@ -24,6 +22,7 @@
 Try it: [glaucoscan.ai](https://glaucoscan.ai)
 Watch the video demo: [YouTube Link](https://youtu.be/c6hR0KTX86Q)
 
+---
 
 ## 📚 Table of Contents
 1. Project Overview  
