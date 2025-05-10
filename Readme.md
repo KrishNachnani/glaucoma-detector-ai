@@ -1,8 +1,29 @@
 #  Glaucoma Detection System
 
-A full-stack AI solution for detecting glaucoma from retinal fundus images, combining a powerful **FastAPI backend** with a user-friendly **Next.js frontend**.
+# GlaucoScan.ai
+
+**Open-source full stack AI tool for early glaucoma detection from fundus images, optimized for mobile and low-resource clinics.**
+
+![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Stars](https://img.shields.io/github/stars/KrishNachnani/Glaucoma?style=social)
 
 ---
+
+## ✨ Key Features
+
+- 🔍 Glaucoma prediction using lightweight MLP architecture
+- 🖼️ Supports fundus image upload via modern UI (Next.js)
+- ⚙️ FastAPI backend with modular components for preprocessing, training, and inference
+- 🧠 Energy-efficient model optimized for low-resource clinics
+- 🐳 Docker-ready for fast deployment
+
+---
+
+## 🧪 Live Demo
+
+Try it: [glaucoscan.ai](https://glaucoscan.ai)
+Watch the video demo: [YouTube Link](https://youtu.be/c6hR0KTX86Q)
+
 
 ## 📚 Table of Contents
 1. Project Overview  
@@ -112,6 +133,24 @@ cd glaucoscan-UI  && ./run-docker.sh
 For questions or support, reach out at:
 
 - **GitHub Issues**: https://github.com/KrishNachnani/Glaucoma/issues
+
+---
+
+## 📝 Citation
+
+If you use this work in your research, please cite the following papers:
+
+1. **Energy Efficient Learning Algorithms for Glaucoma Diagnosis**  
+   *Proceedings of the 22nd IEEE International Conference on Machine Learning and Applications (ICMLA 2023)*  
+   Krish Nachnani  
+   DOI: [10.1109/ICMLA58977.2023.00307](https://doi.org/10.1109/ICMLA58977.2023.00307)
+
+2. **Leveraging GAN-based Data Augmentation for Advanced Glaucoma Diagnostics**  
+   In *Recent Advances in Deep Learning Applications*, CRC Press, Taylor & Francis Group.  
+   Krish Nachnani  
+   [Available online](https://www.taylorfrancis.com/books/edit/10.1201/9781003570882/recent-advances-deep-learning-applications-uche-onyekpe-vasile-palade-arif-wani)
+
+The second publication is an extended version of the ICMLA 2023 paper, with additional results and discussion.
 
 ---
 
