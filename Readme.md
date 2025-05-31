@@ -4,6 +4,8 @@
 
 ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Stars](https://img.shields.io/github/stars/KrishNachnani/Glaucoma?style=social)
+![Downloads](https://img.shields.io/github/downloads/KrishNachnani/glaucoma-detector-ai/total)
+
 
 ---
 
