@@ -118,6 +118,20 @@ cd glaucoscan-API && ./run_docker.sh
 cd glaucoscan-UI  && ./run-docker.sh
 ```
 
+### Run Local Prediction Script
+
+You can test the trained model locally without running the full API or frontend.
+
+```bash
+cd glaucoscan-API
+pip install -r requirements.txt
+python predict.py
+```
+
+This uses example_input.csv, a sample 2048-dimensional feature vector, and outputs:
+
+Prediction: Glaucoma (class 0)
+
 ---
 
 ## 🔎 More Details
