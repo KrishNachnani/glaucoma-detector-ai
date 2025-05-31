@@ -29,7 +29,7 @@ Watch the video demo: [YouTube Link](https://youtu.be/c6hR0KTX86Q)
 
 Grab the latest lightweight package for local prediction:
 
-[![Download](https://img.shields.io/badge/Download-GlaucoScan%20v1.1-blue?logo=github)](https://github.com/KrishNachnani/glaucoma-detector-ai/releases/download/v1.1/glaucoscan-v1.1.zip)
+[![Download](https://img.shields.io/badge/Download-GlaucoScan%20v1.1-blue?logo=github)](https://github.com/KrishNachnani/glaucoma-detector-ai/releases/download/v1.1/glaucoscan_v1.1.zip)
 
 ---
 
