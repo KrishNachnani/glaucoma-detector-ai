@@ -5,6 +5,8 @@
 ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Stars](https://img.shields.io/github/stars/KrishNachnani/Glaucoma?style=social)
 ![Downloads](https://img.shields.io/github/downloads/KrishNachnani/glaucoma-detector-ai/total)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15567617.svg)](https://doi.org/10.5281/zenodo.15567617)
+
 
 
 ---
@@ -160,6 +162,10 @@ For questions or support, reach out at:
 
 ## 📝 Citation
 
+This software release is archived and citable via Zenodo.
+
+[![DOI](https://zenodo.org/badge/DOI/10.1109/ICMLA58977.2023.00307.svg)](https://doi.org/10.1109/ICMLA58977.2023.00307)
+
 If you use this work in your research, please cite the following papers:
 
 1. **Energy Efficient Learning Algorithms for Glaucoma Diagnosis**  
@@ -171,8 +177,12 @@ If you use this work in your research, please cite the following papers:
    In *Recent Advances in Deep Learning Applications*, CRC Press, Taylor & Francis Group.  
    Krish Nachnani  
    [Available online](https://www.taylorfrancis.com/books/edit/10.1201/9781003570882/recent-advances-deep-learning-applications-uche-onyekpe-vasile-palade-arif-wani)
+   *(Extended version of the ICMLA 2023 paper, with additional results and discussion.)*
 
-The second publication is an extended version of the ICMLA 2023 paper, with additional results and discussion.
+3. **GlaucoScan v1.1: Lightweight AI for Early Glaucoma Detection (Software)**  
+   Krish Nachnani  
+   Zenodo, 2025. DOI: [10.5281/zenodo.15567617](https://doi.org/10.5281/zenodo.15567617)
+
 
 ---
 
