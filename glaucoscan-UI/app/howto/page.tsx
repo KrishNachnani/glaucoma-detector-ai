@@ -31,11 +31,15 @@ export default function HowTo() {
         {/* Instructions */}
         <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
           <p>
-            To use Glaucoscan.ai, you’ll need a clear retinal image (also called a fundus photo) of one eye. You can capture this using a smartphone and a 20D or 28D handheld lens. The image must show the optic nerve and surrounding retina.
+            To use Glaucoscan.ai, you’ll need a clear retinal image (also called a fundus photo) of one eye. You can capture this using a smartphone, a 20D or 28D handheld lens, and our low-cost 3D printed device. The image must show the optic nerve and surrounding retina.
           </p>
 
           <p>
-            Hold the lens 2–4 cm in front of the patient’s eye, then align your smartphone flashlight through the lens until the retina is visible. You may need to adjust angles and distance to find the clearest view.
+            Hold the lens 2–4 cm in front of the patient’s eye, then align your smartphone flashlight through the lens until the retina is visible. You may need to adjust angles and distance to find the clearest view. Make sure the eye is dilated for optimal clarity.
+          </p>
+
+          <p>
+            Use our low-cost 3D printed device to maintain the alignment between the light source and the 20D lens for consistent imaging.
           </p>
 
           <p>
@@ -43,8 +47,7 @@ export default function HowTo() {
           </p>
 
           <p>
-            For best results, dim the room lights and ask the subject to keep both eyes open while fixating on a still object. Dilation is not required, but may improve clarity in darker eyes.
-          </p>
+            For best results, dim the room lights and ask the subject to keep both eyes open while fixating on a still object. Dilation is required for optimal clarity.</p>
         </div>
       </div>
     </div>

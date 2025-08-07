@@ -68,7 +68,7 @@ export default function Home() {
           Accessible AI for Early Glaucoma Detection
         </h1>
         <p className="text-blue-300 text-xl mt-4">
-          Helping clinicians and communities screen for glaucoma anywhere — using only a smartphone and a lens.
+          Helping clinicians and communities screen for glaucoma anywhere using only a smartphone and a lens.
         </p>
       </div>
 

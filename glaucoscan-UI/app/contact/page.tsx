@@ -46,7 +46,7 @@ export default function Contact() {
         {/* Hero */}
         <div className="text-center mb-10">
           <h1 className="text-4xl font-bold text-white mb-2">Contact Us</h1>
-          <p className="text-blue-300 text-lg">We’d love to hear from you — whether it's feedback, collaboration, or questions.</p>
+          <p className="text-blue-300 text-lg">We’d love to hear from you, whether it's feedback, collaboration, or questions.</p>
         </div>
 
         {/* Contact Form */}
