@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Upload, Eye, AlertCircle } from 'lucide-react';
+import { Upload, Eye, AlertCircle, Quote } from 'lucide-react';
 import Image from 'next/image';
 import NeuralNetworkVisualization from "@/components/NeuralNetworkVisualization";
+
 
 interface AnalysisResult {
   filename: string;
@@ -70,6 +71,16 @@ export default function Home() {
         <p className="text-blue-300 text-xl mt-4">
           Helping clinicians and communities screen for glaucoma anywhere using only a smartphone and a lens.
         </p>
+        {/* Featured Testimonial - compact */}
+        
+        <div className="mt-6 max-w-xl mx-auto border-t border-blue-400/30 pt-4">
+          <p className="text-lg text-blue-100 italic text-center">
+            “A game-changer in democratizing ophthalmic care.”
+          </p>
+          <p className="mt-2 text-sm text-gray-400 text-center">
+            — Dr. Vishal Dedhia, Ophthalmologist
+          </p>
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start">
@@ -97,7 +108,15 @@ export default function Home() {
               className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-blue-400 text-blue-400 rounded-xl cursor-pointer hover:border-blue-500 transition-all bg-[#1a2942]/50"
             >
               {selectedImage ? (
-                <div className={`relative w-full h-full ${result?.prediction === 'Glaucoma' ? 'ring-4 ring-red-500' : result ? 'ring-4 ring-green-500' : ''}`}>
+                <div
+                  className={`relative w-full h-full ${
+                    result?.prediction === 'Glaucoma'
+                      ? 'ring-4 ring-red-500'
+                      : result
+                      ? 'ring-4 ring-green-500'
+                      : ''
+                  }`}
+                >
                   <Image
                     src={selectedImage}
                     alt="Uploaded image"
@@ -106,15 +125,14 @@ export default function Home() {
                   />
                 </div>
               ) : (
-                <div className="text-center space-y-4">
-                  <Upload className="w-12 h-12 text-blue-400 mx-auto" />
-                  <p className="text-blue-400">Click or drag image to upload</p>
+                <div className="text-center space-y-3">
+                  <Upload className="w-14 h-14 text-blue-300 mx-auto" />
+                  <p className="text-blue-200 font-medium">Click or drag image to upload</p>
                 </div>
               )}
             </label>
           </div>
-        </div>
-
+          
         {/* Right Column */}
         {!selectedImage ? (
           <div className="self-center bg-[#1a2942] p-8 rounded-2xl space-y-6 max-w-md w-full mx-auto">
@@ -196,6 +214,24 @@ export default function Home() {
           </div>
         )}
       </div>
+
+        {/* Clinical Validation */}
+      <section id="validation" className="mt-20">
+        <div className="max-w-4xl mx-auto bg-[#1a2942] border border-white/10 rounded-2xl p-8 md:p-10 shadow-xl">
+          <h2 className="text-2xl font-semibold text-white mb-4">Clinical Validation</h2>
+          <figure>
+            <blockquote className="text-gray-100 italic text-lg leading-relaxed">
+              “Krish’s Glaucoscan.ai system is a game-changer. I supervised its use on patients in my clinic and was impressed.
+              His 3D-printed device makes capturing clear, high-quality fundus images with a smartphone straightforward and effective.
+              The backend AI analysis provides an accessible, and affordable tool for early glaucoma detection. This is precisely the kind
+              of innovation we need to democratize ophthalmic care and combat preventable blindness.”
+            </blockquote>
+            <figcaption className="mt-4 text-sm text-gray-300">
+              — <span className="font-medium text-white">Dr. Vishal Dedhia</span>, Ophthalmologist
+            </figcaption>
+          </figure>
+        </div>
+      </section>
 
       {/* Disclaimer */}
       <div className="text-sm text-center text-gray-400 px-4 pt-12 max-w-3xl mx-auto">
