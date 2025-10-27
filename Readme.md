@@ -11,23 +11,23 @@
 
 ---
 
-## ✨ Key Features
+## Key Features
 
-- 🔍 Glaucoma prediction using lightweight MLP architecture
-- 🖼️ Supports fundus image upload via modern UI (Next.js)
-- ⚙️ FastAPI backend with modular components for preprocessing, training, and inference
-- 🧠 Energy-efficient model optimized for low-resource clinics
-- 🐳 Docker-ready for fast deployment
+- Glaucoma prediction using lightweight MLP architecture
+- Supports fundus image upload via modern UI (Next.js)
+- FastAPI backend with modular components for preprocessing, training, and inference
+- Energy-efficient model optimized for low-resource clinics
+- Docker-ready for fast deployment
 
 ---
 
-## 🧪 Live Demo
+## Live Demo
 
 Try it: [glaucoscan.ai](https://glaucoscan.ai)
 Watch the video demo: [YouTube Link](https://youtu.be/c6hR0KTX86Q)
 
 ---
-## 📦 Download Inference Demo
+## Download Inference Demo
 
 Grab the latest lightweight package for local prediction:
 
@@ -35,7 +35,7 @@ Grab the latest lightweight package for local prediction:
 
 ---
 
-## 📚 Table of Contents
+## Table of Contents
 1. Project Overview  
 2. System Architecture  
 3. Process Flow  
@@ -46,12 +46,12 @@ Grab the latest lightweight package for local prediction:
 
 ---
 
-## 🧩 Project Overview
+## Project Overview
 
 This repository combines two key components:
 
-- 🔧 `glaucoscan-API`: FastAPI-based backend for image processing and classification.  
-- 🌐 `glaucoscan-UI`: Next.js frontend for uploading images, getting predictions, and user interaction.  
+- `glaucoscan-API`: FastAPI-based backend for image processing and classification.  
+- `glaucoscan-UI`: Next.js frontend for uploading images, getting predictions, and user interaction.  
 
 ### Core Model Architecture
 
@@ -69,7 +69,7 @@ flowchart LR
 
 ---
 
-## 🔁 Process Flow
+## Process Flow
 
 ```mermaid
 graph TD
@@ -87,7 +87,7 @@ graph TD
 ```
 
 ---
-## 🗂️ Folder Structure
+## Folder Structure
 
 ```
 Glaucoma/
@@ -100,7 +100,7 @@ Each subproject includes its own `README.md` with setup instructions, configurat
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Backend (API)
 
@@ -145,14 +145,14 @@ Prediction: Glaucoma (class 0)
 
 ---
 
-## 🔎 More Details
+## More Details
 
-- 📘 **API Documentation**: See `glaucoscan-API/README.md`  
-- 📘 **UI Documentation**: See `glaucoscan-UI/README.md`
+- **API Documentation**: See `glaucoscan-API/README.md`  
+- **UI Documentation**: See `glaucoscan-UI/README.md`
 
 ---
 
-## 📬 Contact
+## Contact
 
 For questions or support, reach out at:
 
@@ -160,7 +160,7 @@ For questions or support, reach out at:
 
 ---
 
-## 📝 Citation
+## Citation
 
 This software release is archived and citable via Zenodo.
 
@@ -186,6 +186,6 @@ If you use this work in your research, please cite the following papers:
 
 ---
 
-## 🪪 License
+## License
 
 This project is licensed under the MIT License.
