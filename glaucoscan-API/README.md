@@ -26,20 +26,26 @@ flowchart LR
 
 ## Project Structure
 ```
-├── app.py                 # Main FastAPI application
-├── model_utils.py         # Utility functions for model operations
-├── train_model.py         # Script to train and save the classification model
-├── extract_features.py    # Script to extract features from images
-├── augment_data.py        # Script for data augmentation
-├── log_utils.py           # Centralized logging configuration utility
-├── config.yaml            # Configuration file for application settings
-├── requirements.txt       # Project dependencies
-├── images/                # Directory for training/test images
-│   ├── Balanced Glaucoma/     # Images with glaucoma
-│   └── Balanced No Glaucoma/  # Images without glaucoma
-├── models/                # Directory for storing trained models
-├── logs/                  # Directory for application logs
-└── uploaded/              # Directory for user-uploaded images
+├── app.py                      # FastAPI application
+├── model_utils.py              # Preprocessing + prediction utilities
+├── train_model.py              # Train and save the MLP classifier
+├── extract_features.py         # Extract deep features from retinal images
+├── augment_data.py             # Data augmentation pipeline
+├── build_image_to_tflite_pipeline.py   # NEW: Generates unified image→TFLite model for Android
+├── log_utils.py                # Centralized logging utilities
+├── config.yaml                 # Config-driven application settings
+├── requirements.txt            # Dependencies
+├── images/                     # Training / testing images
+│   ├── Balanced Glaucoma/
+│   └── Balanced No Glaucoma/
+├── models/                     # Trained scikit-learn models and weights
+│   ├── glaucoma_mlp_model.pkl
+│   ├── scaler.joblib
+│   ├── feature_selector.joblib
+│   └── class_mapping.pkl
+├── logs/                       # Logging output
+└── uploaded/                   # User-uploaded images
+
 ```
 
 ## Process Flow
@@ -398,8 +404,38 @@ The training process automatically generates performance metrics including:
 - Classification report (precision, recall, F1-score)
 - Confusion matrix visualization
 
-## License
-[Include your license information here]
+## Creating a TFLite Model for the Android App
+To deploy this glaucoma detection model inside an Android application, you will need to convert the trained Python model into a TensorFlow Lite (TFLite) format.
 
-## Contact
-[Your contact information]
+
+### 1. Run the TFLite pipeline
+
+From the project root:
+
+```bash
+python build_image_to_tflite_pipeline.py
+```
+
+This script will:
+- Load the trained model components from the models/ directory
+- Build a unified image → prediction pipeline
+- Export a .tflite model file
+
+### 2. Copy the .tflite model into the Android project
+
+- Open the Android app repository:
+https://github.com/KrishNachnani/glaucoscan-android
+
+- In the Android project, create (if it does not already exist) an assets directory for your app module, for example:
+```
+app/src/main/assets/
+```
+
+- Copy the exported .tflite model file into this assets folder
+(for example, you might name it glaucoma_model.tflite).
+
+- In the Android code, load the model from the assets folder using TensorFlow Lite and use it for on-device inference.
+
+
+## License
+This project is licensed under the MIT License.
