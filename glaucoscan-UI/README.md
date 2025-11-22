@@ -10,9 +10,21 @@ This application uses the following environment variables for configuration:
 - `NEXT_PUBLIC_GLAUCOMA_API_URL`: URL for the backend API (default: http://localhost:8900)
 
 ### Email Configuration (Contact Form)
-- `NEXT_PUBLIC_MAILERSEND_API_KEY`: Your MailerSend API key for sending emails
-- `NEXT_PUBLIC_EMAIL_FROM`: Email address used as the sender (default: noreply@yourdomain.com)
-- `NEXT_PUBLIC_EMAIL_TO`: Email address where contact form submissions are sent (default: contact@yourdomain.com)
+
+The contact form uses [Web3Forms](https://web3forms.com) to send submissions to your email.
+
+Set the following environment variable before running `./run-docker.sh`:
+
+1. Create or open .env.local in glaucoscan-UI/:
+```bash
+touch .env.local
+```
+
+2. Add your Web3Forms Access Key
+```bash
+NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your_web3forms_access_key
+```
+
 
 ## Setup
 
@@ -28,9 +40,6 @@ You can deploy the application using Docker:
 ```bash
 # Build and run with default settings
 ./run-docker.sh
-
-# Or with custom environment variables
-API_URL=https://your-api-url.com MAILERSEND_API_KEY=your_key EMAIL_FROM=your@email.com EMAIL_TO=recipient@email.com ./run-docker.sh
 ```
 
 ## Project Structure

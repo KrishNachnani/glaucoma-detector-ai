@@ -1,120 +1,117 @@
 'use client';
-import { useState } from 'react';
-import { Send } from 'lucide-react';
 
-export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+import { useState } from 'react';
+
+const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+
+export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
+    setSuccessMessage('');
     setErrorMessage('');
 
+    if (!WEB3FORMS_ACCESS_KEY) {
+      setErrorMessage('Contact form is not configured. Please set NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY.');
+      return;
+    }
+
+    setIsSubmitting(true);
+
     try {
-      const response = await fetch('/api/send-email', {
+      const formData = new FormData(e.currentTarget);
+      formData.append('access_key', WEB3FORMS_ACCESS_KEY);
+
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: formData,
       });
 
-      const data = await response.json();
+      const result = await response.json();
 
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', message: '' });
+      if (result.success) {
+        setSuccessMessage('Thank you! Your message has been sent.');
+        (e.target as HTMLFormElement).reset();
       } else {
-        setErrorMessage(data.error || 'Failed to send email. Please try again later.');
-        setSubmitStatus('error');
+        setErrorMessage('Failed to send message. Please try again.');
       }
-    } catch (error) {
-      console.error('Email sending error:', error);
-      setErrorMessage('An error occurred while sending your message. Please try again later.');
-      setSubmitStatus('error');
+    } catch (err) {
+      console.error('Web3Forms error:', err);
+      setErrorMessage('An unexpected error occurred. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0a192f] to-[#112240] py-12 px-4">
-      <div className="max-w-2xl mx-auto">
+    <main className="min-h-screen bg-gradient-to-b from-[#0a192f] to-[#112240] py-12 px-4">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-4xl font-bold text-center text-white mb-2">Contact Us</h1>
+        <p className="text-center text-blue-300 mb-10">
+          We&apos;d love to hear from you, whether it&apos;s feedback, collaboration, or questions.
+        </p>
 
-        {/* Hero */}
-        <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-white mb-2">Contact Us</h1>
-          <p className="text-blue-300 text-lg">We’d love to hear from you, whether it's feedback, collaboration, or questions.</p>
-        </div>
+        <section className="bg-[#0b1930] rounded-2xl p-8 shadow-lg">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-blue-200 mb-1">
+                Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                className="w-full rounded-md bg-[#0f213a] border border-[#1f3355] text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
 
-        {/* Contact Form */}
-        <form onSubmit={handleSubmit} className="space-y-6 bg-[#1a2942] p-8 rounded-xl">
-          {/* Name */}
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-200 mb-2">Name</label>
-            <input
-              type="text"
-              id="name"
-              value={formData.name}
-              onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-              className="w-full px-4 py-2 rounded-lg bg-[#0a192f] border border-gray-600 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              required
-            />
-          </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-blue-200 mb-1">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                className="w-full rounded-md bg-[#0f213a] border border-[#1f3355] text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
 
-          {/* Email */}
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-200 mb-2">Email</label>
-            <input
-              type="email"
-              id="email"
-              value={formData.email}
-              onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-              className="w-full px-4 py-2 rounded-lg bg-[#0a192f] border border-gray-600 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              required
-            />
-          </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-blue-200 mb-1">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={5}
+                required
+                className="w-full rounded-md bg-[#0f213a] border border-[#1f3355] text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
 
-          {/* Message */}
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-200 mb-2">Message</label>
-            <textarea
-              id="message"
-              value={formData.message}
-              onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-              rows={5}
-              className="w-full px-4 py-2 rounded-lg bg-[#0a192f] border border-gray-600 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              required
-            />
-          </div>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full flex items-center justify-center rounded-md bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2.5 transition disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? 'Sending...' : 'Send Message'}
+            </button>
 
-          {/* Button */}
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
-          >
-            {isSubmitting ? (
-              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
-            ) : (
-              <>
-                <Send className="w-5 h-5" />
-                Send Message
-              </>
+            {successMessage && (
+              <p className="text-sm text-green-400 text-center mt-2">{successMessage}</p>
             )}
-          </button>
-
-          {/* Status Messages */}
-          {submitStatus === 'success' && (
-            <p className="text-green-400 text-center">Message sent successfully!</p>
-          )}
-          {submitStatus === 'error' && (
-            <p className="text-red-400 text-center">{errorMessage || 'Failed to send message. Please try again.'}</p>
-          )}
-        </form>
+            {errorMessage && (
+              <p className="text-sm text-red-400 text-center mt-2">{errorMessage}</p>
+            )}
+          </form>
+        </section>
       </div>
-    </div>
+    </main>
   );
 }
