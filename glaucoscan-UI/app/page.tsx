@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Upload, Eye, AlertCircle, Quote } from 'lucide-react';
+import { Upload, Eye, AlertCircle} from 'lucide-react';
 import Image from 'next/image';
 import NeuralNetworkVisualization from "@/components/NeuralNetworkVisualization";
 
@@ -132,7 +132,7 @@ export default function Home() {
               )}
             </label>
           </div>
-          
+         </div> 
         {/* Right Column */}
         {!selectedImage ? (
           <div className="self-center bg-[#1a2942] p-8 rounded-2xl space-y-6 max-w-md w-full mx-auto">
