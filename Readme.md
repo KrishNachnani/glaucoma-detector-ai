@@ -23,8 +23,9 @@
 
 ## Live Demo
 
-Try it: [glaucoscan.ai](https://glaucoscan.ai)
-Watch the video demo: [YouTube Link](https://youtu.be/c6hR0KTX86Q)
+- Web app: [glaucoscan.ai](https://glaucoscan.ai)  
+- Android app: [Get it on Google Play](https://play.google.com/store/apps/details?id=com.glaucoma.ai)  
+- Video demo: [Watch on YouTube](https://youtu.be/c6hR0KTX86Q)
 
 ---
 ## Download Inference Demo
